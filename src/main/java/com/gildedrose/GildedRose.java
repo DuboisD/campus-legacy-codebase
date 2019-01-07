@@ -1,4 +1,6 @@
 package com.gildedrose;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class GildedRose {
     Item[] items;
@@ -8,12 +10,21 @@ public class GildedRose {
     }
 
     public void updateQuality() {
+
+        Logger logger = LoggerFactory.getLogger(GildedRose.class);
+
         for (int i = 0; i < items.length; i++) {
-            if (!items[i].name.equals("Aged Brie")
-                    && !items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+            if (!items[i].name.equals("Aged Brie") && !items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+
+                logger.info("It is not Aged Brie or Backstage");
+
                 if (items[i].quality > 0) {
                     if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                        items[i].quality = items[i].quality - 1;
+                        if (!items[i].name.equals("Conjured Mana Cake")) {
+                            items[i].quality = items[i].quality - 1;
+                        } else {
+                            items[i].quality = items[i].quality - 2;
+                        }
                     }
                 }
             } else {
