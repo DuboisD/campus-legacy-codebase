@@ -19,6 +19,9 @@ public class GildedRose {
                 logger.info(items[i].name);
 
                 if (items[i].quality > 0) {
+
+                    logger.info("item[i].quality is above 0");
+
                     if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
                         if (!items[i].name.equals("Conjured Mana Cake")) {
                             items[i].quality = items[i].quality - 1;
@@ -43,6 +46,10 @@ public class GildedRose {
                                 items[i].quality = items[i].quality + 1;
                             }
                         }
+                    }
+                } else {
+                    if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
+                        logger.debug("item[i].quality is above 50");
                     }
                 }
             }
