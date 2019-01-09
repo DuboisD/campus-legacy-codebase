@@ -76,7 +76,7 @@ public class Item {
      * @return
      */
     boolean isSoldOutC() {
-        return this.sellIn <= -100;
+        return this.sellIn < -100;
     }
 
     /**
