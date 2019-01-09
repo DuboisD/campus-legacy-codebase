@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 
 public class GildedRose {
     Item[] items;
-    private static final Logger logger = LoggerFactory.getLogger(GildedRose.class);
+    public static final Logger logger = LoggerFactory.getLogger(GildedRose.class);
 
     public GildedRose(Item[] items) {
         this.items = items;
@@ -16,7 +16,7 @@ public class GildedRose {
      * foreach item will check if is legendary, cheesy, a pass or conjured
      * for item.category : update'Category'
      */
-    void updateQuality() {
+    public void updateQuality() {
         for (Item item : items) {
             logger.info("ITEM :: " + item.toString());
             chooseWhatToDo(item);
@@ -28,7 +28,7 @@ public class GildedRose {
      *
      * @param item
      */
-    private void chooseWhatToDo(Item item) {
+    public void chooseWhatToDo(Item item) {
         if (item.isCheese()) updateCheese(item);
         else if (item.isAPass()) updatePass(item);
         else if (item.isConjured()) updateConjured(item);
@@ -40,7 +40,7 @@ public class GildedRose {
     /**
      * @param item
      */
-    private void updateLegendary(Item item) {
+    public void updateLegendary(Item item) {
         //do Nothing, this is legendary BRO !
     }
 
@@ -50,7 +50,7 @@ public class GildedRose {
      *
      * @param item
      */
-    private void updateCheese(Item item) {
+    public void updateCheese(Item item) {
         decreaseSellIn(item);
 
         increaseQuality(item);
@@ -65,7 +65,7 @@ public class GildedRose {
      *
      * @param item
      */
-    private void updatePass(Item item) {
+    public void updatePass(Item item) {
         decreaseSellIn(item);
 
         increaseQuality(item);
@@ -80,7 +80,7 @@ public class GildedRose {
      *
      * @param item
      */
-    private void updateConjured(Item item) {
+    public void updateConjured(Item item) {
         decreaseSellIn(item);
 
         decreaseQuality(item);
@@ -96,7 +96,7 @@ public class GildedRose {
      *
      * @param item
      */
-    private void updateOther(Item item) {
+    public void updateOther(Item item) {
         decreaseSellIn(item);
 
         decreaseQuality(item);
@@ -108,7 +108,7 @@ public class GildedRose {
      *
      * @param item
      */
-    private void updateWine(Item item) {
+    public void updateWine(Item item) {
         decreaseSellIn(item);
 
         if (item.isSoldOut() && item.isSoldOutC()) decreaseQuality(item);
@@ -122,7 +122,7 @@ public class GildedRose {
      *
      * @param item
      */
-    private void decreaseSellIn(Item item) {
+    public void decreaseSellIn(Item item) {
         item.sellIn = item.sellIn - 1;
     }
 
@@ -135,7 +135,7 @@ public class GildedRose {
      *
      * @param item
      */
-    private void increaseQuality(Item item) {
+    public void increaseQuality(Item item) {
         if (item.quality <= 0) item.quality = 0;
         item.quality++;
         if (item.quality >= 50) item.quality = 50;
@@ -149,7 +149,7 @@ public class GildedRose {
      *
      * @param item
      */
-    private void decreaseQuality(Item item) {
+    public void decreaseQuality(Item item) {
         item.quality--;
         if (item.quality <= 0) item.quality = 0;
     }
